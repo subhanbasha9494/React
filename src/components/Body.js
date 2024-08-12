@@ -1,4 +1,5 @@
 import RestroCard from "./Restaurant";
+import { useState } from "react";
 const resList = [
   {
     name: "Meghana Foods",
@@ -11,28 +12,29 @@ const resList = [
 ];
 
 const Body = () => {
-  let listOfrestaurents = [
-    {
-      id: "12",
-      name: "KFC",
-      average: "4",
-    },
-    {
-      id: "2",
-      name: "DOMINOS",
-      average: "5",
-    },
-  ];
+  const [listOfrestaurents,setListOfres ] = useState([
+      {
+        id: "12",
+        name: "KFC",
+        average: "4",
+      },
+      {
+        id: "2",
+        name: "DOMINOS",
+        average: "5",
+      },
+    ]) ;
+  
   return (
     <div className="body">
       <div className="filter">
         <button
           className="filter-btn"
           onClick={() => {
-            listOfrestaurents = listOfrestaurents.filter(
+            const filteredVal = listOfrestaurents.filter(
               (res) => res.average > 4
             );
-            console.log(listOfrestaurents)
+            setListOfres(filteredVal); 
           }}
         >
           Top Rated Restaurents
