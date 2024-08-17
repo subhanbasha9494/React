@@ -1,6 +1,7 @@
 import RestroCard from "./Restaurant";
 import { useEffect, useState } from "react";
 import Shimer from "./Shimer";
+import { Link } from "react-router-dom";
 const resList = [
   {
     name: "Meghana Foods",
@@ -57,7 +58,6 @@ const Body = () => {
           />
           <button
             onClick={() => {
-              console.log(searchText);
               const filterResList = listOfrestaurents.filter((res) =>
                 res.name
                   .toLocaleLowerCase()
@@ -75,7 +75,7 @@ const Body = () => {
             const filteredVal = listOfrestaurents.filter(
               (res) => res.average > 4
             );
-            setListOfres(filteredVal);
+            setFilterRes(filteredVal);
           }}
         >
           Top Rated Restaurents
@@ -83,7 +83,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filterRes.map((res) => (
-          <RestroCard resName={res.name} key={res.id} />
+          <Link key={res.id}  to={"/restaurants/"+ res.id}><RestroCard resName={res.name} /></Link>
         ))}
       </div>
     </div>
