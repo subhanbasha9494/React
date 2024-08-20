@@ -2,6 +2,7 @@ import RestroCard from "./Restaurant";
 import { useEffect, useState } from "react";
 import Shimer from "./Shimer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const resList = [
   {
     name: "Meghana Foods",
@@ -14,6 +15,7 @@ const resList = [
 ];
 
 const Body = () => {
+  
   const [listOfrestaurents, setListOfres] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterRes, setFilterRes] = useState([]);
@@ -25,7 +27,7 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch("https://jsonplaceholder.typicode.com/todos/1");
     const json = await data.json();
-    console.log(json);
+    //console.log(json);
     const data1 = [
       {
         id: "12",
@@ -36,11 +38,15 @@ const Body = () => {
         id: "2",
         name: "DOMINOS",
         average: "5",
-      }
+      },
     ];
     setListOfres(data1);
-    setFilterRes(data1)
+    setFilterRes(data1);
   };
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) return <h1>Check Internetconnection</h1>;
 
   return listOfrestaurents.length === 0 ? (
     <Shimer />
@@ -83,7 +89,9 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filterRes.map((res) => (
-          <Link key={res.id}  to={"/restaurants/"+ res.id}><RestroCard resName={res.name} /></Link>
+          <Link key={res.id} to={"/restaurants/" + res.id}>
+            <RestroCard resName={res.name} />
+          </Link>
         ))}
       </div>
     </div>

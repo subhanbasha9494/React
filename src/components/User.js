@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 const User = () => {
-  const [fname, setName] = useState({ name: "test", location: "test" });
+  const [fname, setName] = useState({ login: "test", created_at: "test" });
   useEffect(() => {
     //fetchData();
-    const timer = setInterval(() => {
-        console.log("Testing");
-      }, 1000);
+    // const timer = setInterval(() => {
+    //     console.log("Testing");
+    //   }, 1000);
 
       return () => {
         console.log('UseEffect return');
-        clearInterval(timer);
+        //clearInterval(timer);
       }
   }, []);
 
   const fetchData = async () => {
     const data = await fetch("https://api.github.com/users/subhanbasha9494");
     const json = await data.json();
-    console.log(json);
+    //console.log(json);
     setName(json); 
   };
   return (

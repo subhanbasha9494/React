@@ -16,9 +16,9 @@ class UserClass extends React.Component {
 
   componentDidMount() {
     //console.log("Child componentDidMount");
-    this.timer = setInterval(() => {
-      console.log("Testing");
-    }, 1000);
+    // this.timer = setInterval(() => {
+    //   console.log("Testing");
+    // }, 1000);
   }
 
   // async componentDidMount() {
@@ -37,7 +37,7 @@ class UserClass extends React.Component {
 
   componentWillUnmount() {
     console.log("componentwill unmount");
-    clearInterval(this.timer);
+    //clearInterval(this.timer);
   }
 
   render() {
