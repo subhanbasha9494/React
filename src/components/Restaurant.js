@@ -8,4 +8,19 @@ const RestroCard = ({ resName }) => {
     );
   };
 
+  //Higher Order Component
+
+  //input - Restaurantcard => RestaurantCard Promoted
+
+  export const withPromotedLabel = (RestroCard) => {
+    return (props) => {
+      return (
+        <div>
+          <label className="absolute bg-block text-white">Promoted</label>
+          <RestroCard {...props}/>
+        </div>
+      )
+    }
+  }
+
   export default RestroCard;

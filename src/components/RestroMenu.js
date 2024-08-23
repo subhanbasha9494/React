@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Shimer from "./Shimer";
 import { useParams } from "react-router-dom";
-
+import RestaurantCategory from './RestaurantCategory';
 const RestroMenu = () => {
   const [resInfo, setresInfo] = useState(null);
   const params = useParams(); /**useparams we can id dynamically */
@@ -25,14 +25,9 @@ const RestroMenu = () => {
   return resInfo === null ? (
     <Shimer />
   ) : (
-    <div className="menu">
-      <h1>Name of Item</h1>
-      <h1>{resInfo[0].name}</h1>
-      <ul>
-        {resInfo[0].items.map((item) => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
+    <div className="text-center">
+          <RestaurantCategory data={resInfo}/>
+
     </div>
   );
 };

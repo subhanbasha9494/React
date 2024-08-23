@@ -67,3 +67,14 @@
 .user-card {
   border: 1px solid black;
 }
+
+.text-center{
+  text-align: center;
+}
+
+.sub-items{
+  width: 50%;
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}

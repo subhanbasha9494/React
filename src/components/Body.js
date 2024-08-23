@@ -1,8 +1,9 @@
-import RestroCard from "./Restaurant";
+import RestroCard, { withPromotedLabel } from "./Restaurant";
 import { useEffect, useState } from "react";
 import Shimer from "./Shimer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+
 const resList = [
   {
     name: "Meghana Foods",
@@ -15,10 +16,11 @@ const resList = [
 ];
 
 const Body = () => {
-  
   const [listOfrestaurents, setListOfres] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterRes, setFilterRes] = useState([]);
+
+  const RestaurantCardPromoted = withPromotedLabel(RestroCard);
 
   useEffect(() => {
     fetchData();
@@ -33,11 +35,25 @@ const Body = () => {
         id: "12",
         name: "KFC",
         average: "4",
+        promoted: true,
       },
       {
         id: "2",
         name: "DOMINOS",
         average: "5",
+        promoted: true,
+      },
+      {
+        id: "22",
+        name: "PIZZA",
+        average: "6",
+        promoted: false,
+      },
+      {
+        id: "21",
+        name: "SANDWICH",
+        average: "3",
+        promoted: true,
       },
     ];
     setListOfres(data1);
@@ -90,7 +106,11 @@ const Body = () => {
       <div className="res-container">
         {filterRes.map((res) => (
           <Link key={res.id} to={"/restaurants/" + res.id}>
-            <RestroCard resName={res.name} />
+            {res.promoted ? (
+              <RestaurantCardPromoted resName={res.name} />
+            ) : (
+              <RestroCard resName={res.name} />
+            )}
           </Link>
         ))}
       </div>
