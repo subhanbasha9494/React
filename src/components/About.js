@@ -1,6 +1,7 @@
 import { Component } from "react";
 import User from "./User";
 import UserClass from "./UserClass";
+import UserContext from "../utils/UserContext";
 
 // const About = () => {
 //     return (
@@ -15,7 +16,7 @@ import UserClass from "./UserClass";
 
 class About extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     //console.log("parent constructor");
   }
 
@@ -28,7 +29,13 @@ class About extends Component {
     return (
       <div>
         <h1>About</h1>
-        <User/>
+        <div>
+          LoggedIn User:
+          <UserContext.Consumer>
+            {({loggedInUser}) => <h2>{loggedInUser}</h2>}
+          </UserContext.Consumer>
+        </div>
+        <User />
         {/* <UserClass /> */}
       </div>
     );

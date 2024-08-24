@@ -1,9 +1,9 @@
 import RestroCard, { withPromotedLabel } from "./Restaurant";
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useContext} from "react";
 import Shimer from "./Shimer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import UserContext from "../utils/UserContext";
 const resList = [
   {
     name: "Meghana Foods",
@@ -64,6 +64,9 @@ const Body = () => {
 
   if (onlineStatus === false) return <h1>Check Internetconnection</h1>;
 
+  // get the SetUsername from context
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   return listOfrestaurents.length === 0 ? (
     <Shimer />
   ) : (
@@ -102,6 +105,10 @@ const Body = () => {
         >
           Top Rated Restaurents
         </button>
+        <div>
+          <label>UserName:</label>
+          <input type="text" placeholder="userName"  value={loggedInUser} onChange={(e) => setUserName(e.target.value)}></input>
+        </div>
       </div>
       <div className="res-container">
         {filterRes.map((res) => (

@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 const Header = () => {
   const [btnNm, setbtnName] = useState("Login");
+  
+  const {loggedInUser} = useContext(UserContext);
+
   return (
     <div className="header">
       <div className="logo-container">
@@ -22,6 +26,7 @@ const Header = () => {
             <Link to="/contact">Contact Us</Link>
           </li>
           <li>Cart</li>
+          <li>{loggedInUser}</li>
           <button
             className="login"
             onClick={() => {
