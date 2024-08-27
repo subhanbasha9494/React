@@ -5,7 +5,7 @@ import ItemList from './ItemList';
 const Cart = () => {
     //always subscribe the exact data
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  //console.log(cartItems);
   const dispatchCart = useDispatch();
   const handleClearCart = () => {
     dispatchCart(clearCart());
